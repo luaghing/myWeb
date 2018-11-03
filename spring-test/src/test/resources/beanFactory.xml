@@ -31,7 +31,7 @@
             </list>
         </property>
     </bean>
-
+    <!--<context:component-scan base-package="soundsystem"></context:component-scan>-->
 
     <bean class="springframeworktest.beans.Apple">
         <property name="name" value="雷猴"/>

@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -55,7 +56,6 @@ public class TestAction {
 	static final ReentrantLock lock = new ReentrantLock();
 	@Resource(name = "lin_testService")
 	private TestService testService;
-
 	private TransactionalService transactionalService;
 
 	@Autowired
@@ -99,7 +99,11 @@ public class TestAction {
 
 		return "sysman/mainIndex";
 	}
-
+	@RequestMapping(value ="fuckyou")
+	public String test1(Model model){
+		model.addAttribute("userName","大明天下无敌");
+		return "sysman/mainIndex";
+	}
 
 	/**
 	 * layui demo
@@ -107,8 +111,8 @@ public class TestAction {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "testDemo")
-	public String testDemo(Model model) {
+	@RequestMapping(value = "testDemo",method = {RequestMethod.GET,RequestMethod.DELETE})
+	public String testDemo(Model model ) {
 		return "demo/index";
 	}
 
@@ -198,7 +202,6 @@ public class TestAction {
 	public JSONObject upimg(MultipartFile file) throws IOException {
 		InputStream in = file.getInputStream();
 		JSONObject obj = new JSONObject();
-
 		obj = JSONObject.parseObject("{\n" +
 				"            \"code\": 0 //0表示成功，其它失败\n" +
 				"                ,\"msg\": \"\" //提示信息 //一般上传失败后返回\n" +
